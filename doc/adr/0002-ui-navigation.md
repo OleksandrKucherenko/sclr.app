@@ -41,4 +41,4 @@ Implement:
 ## References
 
 - https://developer.android.com/jetpack/androidx/releases/core
-- 
+- https://developer.android.com/build/dependencies

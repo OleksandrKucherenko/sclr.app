@@ -43,6 +43,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
 
+    implementation(libs.androidx.annotations)
     implementation(libs.androidx.splashscreen)
 
     // NOTE: app should use implementation(...), all libs should use api(...)
