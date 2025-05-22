@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">sclr.clone</string>
+    <string name="title_activity_main">Welcome to SCLR\'s Home</string>
 </resources>
