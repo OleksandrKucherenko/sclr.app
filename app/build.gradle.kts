@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.ksp)
+    alias(libs.plugins.dagger.hilt)
 }
 
 android {
@@ -16,9 +18,16 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // all app data, including shared preferences, databases, and files stored in
+        // internal storage, will be wiped before the tests are executed.
+        testInstrumentationRunnerArguments["clearPackageData"] = "true"
     }
 
     buildTypes {
+        debug {
+            versionNameSuffix = "-debug"
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -29,18 +38,28 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
+
     buildFeatures {
         viewBinding = true
         compose = true
     }
+
+    testOptions {
+        animationsDisabled = true
+    }
 }
+
+hilt {
+    enableAggregatingTask = true
+}
+
 
 dependencies {
 
@@ -67,6 +86,27 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+
+    // Images processing
+    implementation(libs.bundles.coil)
+    implementation(libs.bundles.telephoto)
+
+    // Logs
+    implementation(libs.timber)
+
+    // Dependencies Injection
+    ksp(libs.hilt.compiler)
+    implementation(libs.hilt.android)
+    androidTestImplementation(libs.hilt.android.testing)
+    testImplementation(libs.hilt.android.testing)
+
+    // Json Parser
+    implementation(libs.square.moshiKotlin)
+    ksp(libs.square.moshiKotlinCodegen)
+
+    // Retrofit, Networking, Http Client, Endpoints
+    implementation(libs.bundles.square.okhttp)
+    implementation(libs.bundles.retrofit)
 
     testImplementation(libs.junit)
 
