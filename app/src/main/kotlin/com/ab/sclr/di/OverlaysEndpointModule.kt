@@ -1,6 +1,6 @@
 package com.ab.sclr.di
 
-import com.ab.sclr.domain.overlays.OverlaysEndpoint
+import com.ab.sclr.data.overlays.OverlaysEndpoint
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,6 +12,6 @@ import retrofit2.Retrofit
 object OverlaysEndpointModule {
 
     @Provides
-    fun provideOverlaysClient(@DefaultClient retrofit: Retrofit): OverlaysEndpoint =
+    fun provideOverlaysClient(retrofit: Retrofit): OverlaysEndpoint =
         retrofit.create(OverlaysEndpoint::class.java)
 }

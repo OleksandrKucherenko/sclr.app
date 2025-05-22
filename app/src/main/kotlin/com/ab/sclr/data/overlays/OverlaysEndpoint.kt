@@ -1,4 +1,4 @@
-package com.ab.sclr.domain.overlays
+package com.ab.sclr.data.overlays
 
 import retrofit2.http.GET
 

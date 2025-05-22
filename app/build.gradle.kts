@@ -102,6 +102,7 @@ dependencies {
 
     // Json Parser
     implementation(libs.square.moshiKotlin)
+    implementation(libs.square.moshiAdapters)
     ksp(libs.square.moshiKotlinCodegen)
 
     // Retrofit, Networking, Http Client, Endpoints

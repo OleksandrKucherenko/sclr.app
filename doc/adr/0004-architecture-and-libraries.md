@@ -30,13 +30,15 @@ Tags: #LiveData #ViewModel #Lifecycle
 ### Networking Library - Http Client
 
 Retrofit - https://square.github.io/retrofit/, Retrofit turns your HTTP API into a Java (or Kotlin) interface.
-OkHttp - 
+OkHttp - https://github.com/square/okhttp, Http client
 Moshi - https://github.com/square/moshi/, JSON parser
 
 Alternatives:
-- Ktor - 
+- Ktor - https://ktor.io/
 
 ref1: https://kashifahmad.medium.com/how-to-use-moshi-serialiizer-with-retrofit-mvvm-coroutine-in-kotlin-d3e5da6d0adb
+ref2: https://bladecoder.medium.com/advanced-json-parsing-techniques-using-moshi-and-kotlin-daf56a7b963d
+ref3: https://www.baeldung.com/java-json-moshi
 
 ### Images Loading Library
 
@@ -76,6 +78,7 @@ ref1: https://dagger.dev/hilt/components.html
 ref2: https://proandroiddev.com/integrate-kotlin-inject-anvil-to-tv-maniac-e1330c9cb566
 ref3: https://slack.engineering/extending-anvil-for-fun-and-profit/
 ref4: https://developer.android.com/training/dependency-injection/hilt-android#kts
+ref5: https://proandroiddev.com/hilt-viewmodels-assisted-injection-aca2d6ee581d
 
 ### KSP vs KAPT
 

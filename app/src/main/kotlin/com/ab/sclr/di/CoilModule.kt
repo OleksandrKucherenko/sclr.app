@@ -15,7 +15,10 @@ import okhttp3.OkHttpClient
 object CoilModule {
 
     @Provides
-    fun providesCoil(@ApplicationContext context: Context, okHttpClient: OkHttpClient) =
+    fun providesCoil(
+        @ApplicationContext context: Context,
+        @DefaultClient okHttpClient: OkHttpClient
+    ) =
         ImageLoader.Builder(context).components {
             add(
                 OkHttpNetworkFetcherFactory(callFactory = okHttpClient)

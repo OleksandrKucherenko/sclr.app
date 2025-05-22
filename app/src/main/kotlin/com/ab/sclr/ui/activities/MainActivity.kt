@@ -14,17 +14,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
-import com.ab.sclr.domain.overlays.OverlaysEndpoint
 import com.ab.sclr.ui.theme.SclrcloneTheme
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val model: MainActivityViewModel by viewModels()
-    @Inject
-    lateinit var overlaysRepository: OverlaysEndpoint
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Timber.i("onCreate()")
@@ -36,9 +32,13 @@ class MainActivity : AppCompatActivity() {
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
+        model.loadOverlays()
+
         setContent {
             SclrcloneTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+
+
                     Greeting(
                         name = "Android",
                         modifier = Modifier.padding(innerPadding)

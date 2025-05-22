@@ -11,6 +11,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 @InstallIn(SingletonComponent::class)
 object OkHttpModule {
     @Provides
+    @DefaultClient
     fun provideOkHttp() = OkHttpClient.Builder()
         .addInterceptor(HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
