@@ -76,6 +76,10 @@ dependencies {
     implementation(libs.androidx.annotations)
     implementation(libs.androidx.splashscreen)
 
+    // Navigation
+    implementation(libs.androidx.navigation.runtime.android)
+    implementation(libs.androidx.navigation.compose)
+
     // NOTE: app should use implementation(...), all libs should use api(...)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)

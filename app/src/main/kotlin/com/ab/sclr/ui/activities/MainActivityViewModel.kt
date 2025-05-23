@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.ab.sclr.R
 import com.ab.sclr.data.overlays.OverlayCategory
 import com.ab.sclr.data.overlays.OverlaysEndpoint
+import com.ab.sclr.ui.compose.Tab
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -26,9 +27,4 @@ class MainActivityViewModel @Inject constructor(): ViewModel() {
            Timber.i("Found ${downloaded.size} overlays")
        }
     }
-}
-
-enum class Tab(val title: String, val icon: Int) {
-    HOME("Templates", R.drawable.ic_home_templates),
-    SAVED("Saved", R.drawable.ic_home_saved)
 }

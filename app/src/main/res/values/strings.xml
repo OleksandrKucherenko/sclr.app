@@ -1,4 +1,24 @@
 <resources>
     <string name="app_name">sclr.clone</string>
     <string name="title_activity_main">Welcome to SCLR\'s Home</string>
+    <string name="create_new_project">Create New Project</string>
+    <string name="home_tab_templates">Templates</string>
+    <string name="home_tab_saved">Saved</string>
+    <string name="title_templates_by_category">Templates by Category</string>
+    <string name="button_create_new_project">Create New Project</string>
+    <string name="title_popular_shared_projects">Popular Shared Projects</string>
+    <string name="label_images_x_slides_y">Images: X, Slides: Y</string>
+    <string name="label_author_z">Author: Z</string>
+    <string name="button_use_template">Use Template</string>
+    <string name="placeholder_author_unknown">unknown</string>
+    <string name="title_preview_template_N">Preview: Template %1$s</string>
+    <string name="alt_icon_back">Back</string>
+    <string name="alt_icon_previous">Previous</string>
+    <string name="alt_icon_pause">Pause</string>
+    <string name="alt_icon_play">Play</string>
+    <string name="alt_icon_next">Next</string>
+    <string name="alt_icon_save_as">Save as Image</string>
+    <string name="button_project_blank">Blank</string>
+    <string name="button_from_template">From Template</string>
+    <string name="title_create_new_project">Create New Project</string>
 </resources>
