@@ -91,6 +91,8 @@ Architecture dictates at least three levels of the abstractions: ui, domain and 
 The data layer that contains the business logic of your app and exposes application data.
 The domain layer to simplify and reuse the interactions between the UI and data layers.
 
+Skip features/modularization for simplifying the solution.
+
 ## References
 
 - https://developer.android.com/topic/architecture

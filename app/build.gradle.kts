@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.dagger.hilt)
+    alias(libs.plugins.androidx.navigation.safeargs)
 }
 
 android {
@@ -69,6 +70,8 @@ dependencies {
     // material UI
     implementation(libs.material)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.icons.core)
+    implementation(libs.androidx.icons.extended)
 
     implementation(libs.androidx.annotations)
     implementation(libs.androidx.splashscreen)
@@ -115,6 +118,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation(libs.androidx.navigation.testing)
 
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
