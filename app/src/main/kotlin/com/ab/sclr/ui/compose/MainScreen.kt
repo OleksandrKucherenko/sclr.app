@@ -8,10 +8,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
@@ -54,7 +57,9 @@ fun MainScreen(navController: NavController) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
-            TopAppBar(title = { Text(text = stringResource(selectedTab.title)) })
+            TopAppBar(
+                title = { Text(text = stringResource(selectedTab.title)) },
+            )
         },
         bottomBar = {
             NavigationBar {
@@ -81,13 +86,16 @@ fun MainScreen(navController: NavController) {
     ) { paddingValues ->
         Column(modifier = Modifier.padding(paddingValues)) {
             when (selectedTab) {
-                Tab.HOME -> TemplatesTabScreen(navController = navController, onNewProjectClick = { showBottomSheet = true })
+                Tab.HOME -> TemplatesTabScreen(
+                    navController = navController,
+                    onNewProjectClick = { showBottomSheet = true })
+
                 Tab.SAVED -> SavedTabScreen(navController = navController)
             }
         }
     }
 
-    if(showBottomSheet) {
+    if (showBottomSheet) {
         ModalBottomSheet(
             onDismissRequest = { showBottomSheet = false },
             sheetState = sheetState
@@ -115,7 +123,10 @@ fun NewProjectSelectionContent(onBlankClick: () -> Unit, onFromTemplateClick: ()
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        Text(stringResource(R.string.title_create_new_project), style = MaterialTheme.typography.titleLarge)
+        Text(
+            stringResource(R.string.title_create_new_project),
+            style = MaterialTheme.typography.titleLarge
+        )
         Spacer(modifier = Modifier.height(8.dp))
         Button(onClick = onBlankClick, modifier = Modifier.fillMaxWidth()) {
             Text(stringResource(R.string.button_project_blank))

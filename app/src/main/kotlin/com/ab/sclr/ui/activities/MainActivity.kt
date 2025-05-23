@@ -28,6 +28,8 @@ class MainActivity : AppCompatActivity() {
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
+        supportActionBar?.hide()
+
         model.loadOverlays()
 
         setContent {

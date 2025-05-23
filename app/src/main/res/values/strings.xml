@@ -4,9 +4,9 @@
     <string name="create_new_project">Create New Project</string>
     <string name="home_tab_templates">Templates</string>
     <string name="home_tab_saved">Saved</string>
-    <string name="title_templates_by_category">Templates by Category</string>
+    <string name="title_templates_by_category">Templates</string>
     <string name="button_create_new_project">Create New Project</string>
-    <string name="title_popular_shared_projects">Popular Shared Projects</string>
+    <string name="title_popular_shared_projects">Popular</string>
     <string name="label_images_x_slides_y">Images: X, Slides: Y</string>
     <string name="label_author_z">Author: Z</string>
     <string name="button_use_template">Use Template</string>
@@ -21,4 +21,5 @@
     <string name="button_project_blank">Blank</string>
     <string name="button_from_template">From Template</string>
     <string name="title_create_new_project">Create New Project</string>
+    <string name="title_new_project">New Project</string>
 </resources>

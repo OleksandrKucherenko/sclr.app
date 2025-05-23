@@ -1,7 +1,6 @@
 package com.ab.sclr.ui.compose
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -9,8 +8,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -24,6 +21,19 @@ import androidx.navigation.compose.rememberNavController
 import com.ab.sclr.R
 import com.ab.sclr.ui.theme.SclrcloneTheme
 
+enum class Category(val title: String) {
+    Stories("Stories"),
+    Seamless("Seamless"),
+    Collage("Collage"),
+    Instant("Instant"),
+    Tape("Tape"),
+    Minimal("Minimal"),
+    Plastic("Plastic"),
+    Paper("Paper"),
+    Digital("Original"),
+    Film("Film")
+}
+
 @Composable
 fun TemplatesTabScreen(navController: NavController, onNewProjectClick: () -> Unit = {}) {
     LazyColumn(
@@ -33,14 +43,25 @@ fun TemplatesTabScreen(navController: NavController, onNewProjectClick: () -> Un
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         item {
-            Text(stringResource(R.string.title_templates_by_category), style = MaterialTheme.typography.titleMedium)
+            Text(
+                stringResource(R.string.title_templates_by_category),
+                style = MaterialTheme.typography.titleMedium
+            )
 
             // Horizontal List of Templates (Skeleton)
             LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                items(5) { SkeletonItem(modifier = Modifier.size(120.dp, 180.dp)) }
+                Category.entries.forEach { value ->
+                    item {
+                        SkeletonItem(modifier = Modifier.size(120.dp, 180.dp), text = value.title)
+                    }
+                }
             }
         }
         item {
+            Text(
+                stringResource(R.string.title_new_project),
+                style = MaterialTheme.typography.titleMedium
+            )
             Button(
                 onClick = {
                     onNewProjectClick()
@@ -51,16 +72,11 @@ fun TemplatesTabScreen(navController: NavController, onNewProjectClick: () -> Un
             }
         }
         item {
-            Text(stringResource(R.string.title_popular_shared_projects), style = MaterialTheme.typography.titleMedium)
-            // Vertical Grid/List of popular projects (Skeleton)
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(2),
-                verticalArrangement = Arrangement.spacedBy(8.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                modifier = Modifier.height(400.dp) // Adjust height as needed
-            ) {
-                items(6) { SkeletonItem(modifier = Modifier.aspectRatio(1f)) }
-            }
+            Text(
+                stringResource(R.string.title_popular_shared_projects),
+                style = MaterialTheme.typography.titleMedium
+            )
+            PopularProjects(navController = navController, modifier = Modifier.height(400.dp))
         }
     }
 }
