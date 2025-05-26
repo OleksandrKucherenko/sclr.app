@@ -29,11 +29,11 @@ data class TemplateDocument(
     val id: String, // Or UUID
     val version: Int = 1,
     val name: String?,
-    val slides: List<Slide>,
-    val images: List<ImageSource>, // Centralized image definitions
-    val background: Background,
-    val ratio: String, // Consider an enum or a structured class for ratio
-    val metadata: Map<String, String>? = null
+    val slides: List<Slide> = listOf(),
+    val images: List<ImageSource> = listOf(), // Centralized image definitions
+    val background: Background = Background.empty(),
+    val ratio: String = "1:1", // Consider an enum or a structured class for ratio
+    val metadata: Map<String, String>? = mapOf()
 )
 
 // ref: https://kotlinlang.org/docs/extensions.html#extension-properties
@@ -49,6 +49,3 @@ val TemplateDocument.author: String?
 
 val TemplateDocument.hashtags: String?
     get() = this.metadata?.get(KnownMetadataKeys.HASHTAGS.name)
-
-
-

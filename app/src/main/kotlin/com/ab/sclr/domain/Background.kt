@@ -1,5 +1,6 @@
 package com.ab.sclr.domain
 
+import android.graphics.Color
 import com.squareup.moshi.JsonClass
 
 enum class BackgroundType {
@@ -19,8 +20,18 @@ enum class BackgroundType {
 @JsonClass(generateAdapter = true)
 data class Background(
     val type: BackgroundType,
-    val colorValue: String? = null, // e.g., "#RRGGBBAA"
+    val colorValue: Int? = null, // e.g., "#RRGGBBAA"
     val imageRef: String? = null // Reference to SclrImageSource.id
 
     // val gradientValue: SclrGradient? = null, // Define this if needed
-)
+
+
+) {
+    companion object {
+        fun empty(): Background = Background(
+            type = BackgroundType.COLOR,
+            colorValue = Color.argb(0, 255, 255, 255),
+            imageRef = null,
+        )
+    }
+}

@@ -9,4 +9,5 @@
 * [5. Overlays Endpoint](./doc/adr/0005-overlays-endpoint.md)
 * [6. UI Navigation](./doc/adr/0006-ui-navigation.md)
 * [7. Sclr Document Structure](./doc/adr/0007-sclr-document-structure.md)
+* [8. Saved Project Repository](./doc/adr/0008-saved-project-repository.md)
 
