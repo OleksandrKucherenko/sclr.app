@@ -1,4 +1,8 @@
 package com.ab.sclr.data
 
-object SavedProjectsRepository {
+import com.ab.sclr.domain.TemplateDocument
+import kotlinx.coroutines.flow.Flow
+
+interface SavedProjectsRepository {
+  // TODO (olku): implement me
 }
