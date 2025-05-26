@@ -2,6 +2,13 @@ package com.ab.sclr.domain
 
 import com.squareup.moshi.JsonClass
 
+enum class KnownMetadataKeys(name: String) {
+    AUTHOR("author"),
+    DESCRIPTION("description"),
+    CATEGORY("category"),
+    HASHTAGS("hashtags")
+}
+
 /**
  * Represents the overall template or canvas for a project.
  *
@@ -15,7 +22,7 @@ import com.squareup.moshi.JsonClass
  *                      Could be a color, gradient, or an image reference.
  * @property ratio The aspect ratio of the template (e.g., "16:9", "4:3", "1:1").
  * @property version Version of the document structure, for future migrations.
- * @property metadata Additional template-specific information (e.g., author, description).
+ * @property metadata Additional template-specific information (e.g., author, description, category, hashtag).
  */
 @JsonClass(generateAdapter = true)
 data class TemplateDocument(
@@ -29,6 +36,19 @@ data class TemplateDocument(
     val metadata: Map<String, String>? = null
 )
 
+// ref: https://kotlinlang.org/docs/extensions.html#extension-properties
+
+val TemplateDocument.category: String?
+    get() = this.metadata?.get(KnownMetadataKeys.CATEGORY.name)
+
+val TemplateDocument.description: String?
+    get() = this.metadata?.get(KnownMetadataKeys.DESCRIPTION.name)
+
+val TemplateDocument.author: String?
+    get() = this.metadata?.get(KnownMetadataKeys.AUTHOR.name)
+
+val TemplateDocument.hashtags: String?
+    get() = this.metadata?.get(KnownMetadataKeys.HASHTAGS.name)
 
 
 
