@@ -11,4 +11,22 @@ data class Slide(
 
     val widthRatio: Float = 1.0f,
     val background: Background = Background.empty()
-)
+) {
+    fun addLayer(layer: Layer): Slide {
+        return this.copy(layers = layers + layer)
+    }
+
+    fun removeLayer(layer: Layer): Slide {
+        return this.copy(layers = layers - layer)
+    }
+
+    fun withLayer(layer: Layer, apply: (Layer) -> Layer): Slide {
+        return withLayer(layer.id, apply)
+    }
+
+    fun withLayer(layerId: String, apply: (Layer) -> Layer): Slide {
+        return this.copy(layers = layers.map {
+            if (it.id == layerId) apply(it) else it
+        })
+    }
+}

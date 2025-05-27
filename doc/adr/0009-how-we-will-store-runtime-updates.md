@@ -34,5 +34,9 @@ Possible implementations:
 
 - use pattern `with${PropertyName}(...)` for naming the methods that doing a property modification. Method should return a new instance of class with applied modifications.
 - use patterns `add${Collection}` `remove${Collection}` for adding/removing elements from collections.
-- use pattern `update${Collection}(item)` and Unit `apply { ... }`
+- use pattern `with{Collection}(item, ...)` and Unit `apply { ... }`
+- use pattern `with{Collection}(ID, ...)` and Unit `apply { ... }`
 - all collection items should have ID field (id they are not represented by primitive data types, like string or int, etc)
+- added kotlin test dependency
+- added robolectric dependency for unit testing, mock Android classes for unit tests
+- `./gradlew test -t` run in continuous mode with watching file system changes

@@ -21,9 +21,10 @@ import com.squareup.moshi.JsonClass
  */
 @JsonClass(generateAdapter = true)
 data class ImageUsage(
-    val imageRef: String, // References SclrImageSource.id
+    val imageRef: String, // References ImageSource.id
     val anchorPosition: SclrPoint = SclrPoint(0.5f, 0.5f), // Default to center
     val crop: SclrRect? = null, // Crop rectangle relative to original image
+
     // val transformationMatrix: SclrMatrix? = null, // Define SclrMatrix if needed for complex transforms
     // val maskPath: SclrPath? = null,              // Define SclrPath for masking
     // val filters: List<SclrFilter>? = null      // Define SclrFilter for image effects

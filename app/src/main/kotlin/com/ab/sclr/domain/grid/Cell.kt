@@ -26,8 +26,11 @@ data class Cell(
     val startColumn: Int,
     val rowSpan: Int = 1,
     val columnSpan: Int = 1,
-    val contentLayerId: String? = null, // ID of an SclrLayer placed *in* this cell
-    // The actual SclrLayer would be in SclrSlide.layers list
+
+    // The actual Layer would be in Slide.layers list
+    // ID of an Layer placed *in* this cell
+    val contentLayerId: String? = null,
+
     val background: Background? = null,
     val previewBackground: Background? = null
 )

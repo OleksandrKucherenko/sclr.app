@@ -28,9 +28,9 @@ import com.squareup.moshi.JsonClass
 data class Layer(
     val id: String, // Or UUID
     val type: LayerType,
-    val zLevel: Int,
+    val zLevel: Int = 0,
     val position: SclrPoint = SclrPoint(0f, 0f), // Relative to slide
-    val size: SclrSize, // Intrinsic size of the layer content or frame
+    val size: SclrSize = SclrSize(0f, 0f), // Intrinsic size of the layer content or frame
     val rotationDegrees: Float = 0f,
     val opacity: Float = 1.0f,
     val isVisible: Boolean = true,

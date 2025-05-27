@@ -117,6 +117,8 @@ dependencies {
     implementation(libs.bundles.retrofit)
 
     testImplementation(libs.junit)
+    testImplementation(libs.robolectric)
+    testImplementation(kotlin("test"))
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -1,5 +1,6 @@
 package com.ab.sclr.domain.images
 
+import com.ab.sclr.domain.TemplateDocument
 import com.squareup.moshi.JsonClass
 
 
@@ -25,4 +26,23 @@ data class ImageSource(
     val type: ImageSourceType = ImageSourceType.LOCAL,
     val isCached: Boolean = false,
     val metadata: Map<String, String> = mapOf()
-)
+) {
+
+    fun addMetadata(key: String, value: String): ImageSource {
+        return this.copy(metadata = metadata + (key to value))
+    }
+
+    fun removeMetadata(key: String): ImageSource {
+        return this.copy(metadata = metadata - key)
+    }
+
+    fun withMetadata(key: String, apply: () -> String): ImageSource {
+        if(!metadata.containsKey(key))
+            return this.copy(metadata = metadata + (key to apply()))
+
+        return this.copy(metadata = metadata.mapValues { (k, v) ->
+            if (k == key) apply() else v
+        })
+    }
+
+}
