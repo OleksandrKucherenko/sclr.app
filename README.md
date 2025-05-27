@@ -12,4 +12,6 @@
 * [8. Saved Project Repository](./doc/adr/0008-saved-project-repository.md)
 * [9. How we will store runtime updates](./doc/adr/0009-how-we-will-store-runtime-updates.md)
 * [10. Predefined Grids](./doc/adr/0010-predefined-grids.md)
+* [11. Document Canvas](./doc/adr/0011-document-canvas.md)
+
 
