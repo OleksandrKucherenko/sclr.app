@@ -40,3 +40,4 @@ Possible implementations:
 - added kotlin test dependency
 - added robolectric dependency for unit testing, mock Android classes for unit tests
 - `./gradlew test -t` run in continuous mode with watching file system changes
+- rollback to the initial version of the Template is problematic. As workaround can be used metadata to store the original settings of the template.

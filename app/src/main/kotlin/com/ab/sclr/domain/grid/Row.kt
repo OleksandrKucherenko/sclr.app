@@ -2,6 +2,7 @@ package com.ab.sclr.domain.grid
 
 import com.ab.sclr.domain.primitives.DimensionType
 import com.squareup.moshi.JsonClass
+import java.util.UUID
 
 @JsonClass(generateAdapter = true)
 data class Row(
