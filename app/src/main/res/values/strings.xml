@@ -12,6 +12,7 @@
     <string name="button_use_template">Use Template</string>
     <string name="placeholder_author_unknown">unknown</string>
     <string name="title_preview_template_N">Preview: Template %1$s</string>
+    <string name="title_edit_project_N">Edit: %1$s</string>
     <string name="alt_icon_back">Back</string>
     <string name="alt_icon_previous">Previous</string>
     <string name="alt_icon_pause">Pause</string>
