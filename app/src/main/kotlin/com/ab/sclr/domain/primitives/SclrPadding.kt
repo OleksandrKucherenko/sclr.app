@@ -1,15 +1,6 @@
-package com.ab.sclr.domain
+package com.ab.sclr.domain.primitives
 
 import com.squareup.moshi.JsonClass
-
-@JsonClass(generateAdapter = true)
-data class SclrPoint(val x: Float, val y: Float)
-
-@JsonClass(generateAdapter = true)
-data class SclrSize(val width: Float, val height: Float)
-
-@JsonClass(generateAdapter = true)
-data class SclrRect(val x: Float, val y: Float, val width: Float, val height: Float)
 
 @JsonClass(generateAdapter = true)
 data class SclrPadding(

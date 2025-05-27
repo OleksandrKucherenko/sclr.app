@@ -18,12 +18,12 @@ class SavedProjectsRepositoryImpl(
 ) : SavedProjectsRepository {
 
     companion object {
-        const val ProjectsDirName = "saved_projects"
-        const val ProjectFileName = "project.json"
+        const val PROJECT_DIR = "saved_projects"
+        const val PROJECT_FILE = "project.json"
     }
 
     private fun getAppProjectsDirectory(): File {
-        val dir = File(context.filesDir, ProjectsDirName)
+        val dir = File(context.filesDir, PROJECT_DIR)
         if (!dir.exists()) {
             dir.mkdirs()
         }
@@ -35,7 +35,7 @@ class SavedProjectsRepositoryImpl(
     }
 
     private fun getProjectFile(projectDir: File): File {
-        return File(projectDir, ProjectFileName)
+        return File(projectDir, PROJECT_FILE)
     }
 
     override suspend fun newProject(id: String): TemplateDocument {

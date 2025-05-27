@@ -1,5 +1,10 @@
-package com.ab.sclr.domain
+package com.ab.sclr.domain.layers
 
+import com.ab.sclr.domain.grid.Grid
+import com.ab.sclr.domain.images.ImageUsage
+import com.ab.sclr.domain.primitives.SclrPoint
+import com.ab.sclr.domain.primitives.SclrSize
+import com.ab.sclr.domain.primitives.SclrText
 import com.squareup.moshi.JsonClass
 
 /**

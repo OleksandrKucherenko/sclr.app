@@ -1,12 +1,7 @@
-package com.ab.sclr.domain
+package com.ab.sclr.domain.images
 
 import com.squareup.moshi.JsonClass
 
-
-enum class ImageSourceType {
-    LOCAL,
-    REMOTE,
-}
 
 /**
  * Defines an image source, which can be local or remote.
@@ -24,10 +19,10 @@ enum class ImageSourceType {
 data class ImageSource(
     val id: String, // Or UUID
     val originalUri: String, // URI to the original image
-    val width: Int,
-    val height: Int,
+    val width: Int = 0,
+    val height: Int = 0,
 
     val type: ImageSourceType = ImageSourceType.LOCAL,
     val isCached: Boolean = false,
-    val metadata: Map<String, String>? = null
+    val metadata: Map<String, String> = mapOf()
 )

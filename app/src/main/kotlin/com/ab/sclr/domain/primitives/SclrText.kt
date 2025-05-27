@@ -1,5 +1,6 @@
-package com.ab.sclr.domain
+package com.ab.sclr.domain.primitives
 
+import android.graphics.Color
 import com.squareup.moshi.JsonClass
 
 /**
@@ -16,13 +17,11 @@ import com.squareup.moshi.JsonClass
 data class SclrText(
     val text: String,
     val fontName: String = "default",
-    val fontSize: Float,
-    val color: String, // e.g., "#RRGGBBAA"
+    val fontSize: Float = 16.0f,
+    val color: Int = Color.argb(0, 0, 0, 0), // e.g., "#RRGGBBAA"
     val alignment: TextAlignment = TextAlignment.LEFT,
+
     // val effects: List<SclrTextEffect>? = null // Define SclrTextEffect if needed
 )
 
 
-enum class TextAlignment {
-    LEFT, CENTER, RIGHT, JUSTIFY
-}

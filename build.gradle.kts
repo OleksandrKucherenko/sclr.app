@@ -15,3 +15,15 @@ plugins {
     alias(libs.plugins.androidx.navigation.safeargs) apply false
 }
 
+subprojects {
+    // use `./gradlew test --rerun-tasks` to run the tests with on terminal reporting
+    tasks.withType<Test> {
+        testLogging {
+            events("passed", "skipped", "failed")
+            exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+            showExceptions = true
+            showCauses = true
+            showStackTraces = true
+        }
+    }
+}

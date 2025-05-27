@@ -15,11 +15,12 @@ import com.ab.sclr.ui.UiDestinations
 @Composable
 fun PopularProjects(
     navController: NavController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaddingValues(16.dp)
 ) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2), // Or adaptive
-        contentPadding = PaddingValues(16.dp),
+        contentPadding = contentPadding,
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier

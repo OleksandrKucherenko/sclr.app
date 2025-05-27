@@ -1,39 +1,7 @@
-package com.ab.sclr.domain
+package com.ab.sclr.domain.grid
 
+import com.ab.sclr.domain.background.Background
 import com.squareup.moshi.JsonClass
-
-@JsonClass(generateAdapter = true)
-data class Grid(
-    val id: String, // Or UUID
-    val rows: List<Row>,
-    val columns: List<Column>,
-    val cells: List<Cell>, // Explicit cells are more flexible for spanning
-    val rowSpacing: Float = 0f,
-    val columnSpacing: Float = 0f,
-    val padding: SclrPadding = SclrPadding()
-)
-
-@JsonClass(generateAdapter = true)
-data class Row(
-    val id: String,
-    val size: Float,
-    // If using WEIGHT, this is the weight. If FIXED, this is Dp/absolute.
-    val sizeType: DimensionType = DimensionType.WEIGHT
-)
-
-@JsonClass(generateAdapter = true)
-data class Column(
-    val id: String,
-    val size: Float,
-    // If using WEIGHT, this is the weight. If FIXED, this is Dp/absolute.
-    val sizeType: DimensionType = DimensionType.WEIGHT
-)
-
-enum class DimensionType {
-    FIXED, // Absolute value (e.g., Dp)
-    WEIGHT // Relative proportion of available space
-}
-
 
 /**
  * Represents a cell within a grid.

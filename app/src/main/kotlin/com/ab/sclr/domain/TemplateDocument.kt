@@ -1,13 +1,8 @@
 package com.ab.sclr.domain
 
+import com.ab.sclr.domain.background.Background
+import com.ab.sclr.domain.images.ImageSource
 import com.squareup.moshi.JsonClass
-
-enum class KnownMetadataKeys(name: String) {
-    AUTHOR("author"),
-    DESCRIPTION("description"),
-    CATEGORY("category"),
-    HASHTAGS("hashtags")
-}
 
 /**
  * Represents the overall template or canvas for a project.
@@ -27,25 +22,13 @@ enum class KnownMetadataKeys(name: String) {
 @JsonClass(generateAdapter = true)
 data class TemplateDocument(
     val id: String, // Or UUID
-    val version: Int = 1,
+    val version: Int = Versions.v1.value,
     val name: String?,
     val slides: List<Slide> = listOf(),
     val images: List<ImageSource> = listOf(), // Centralized image definitions
     val background: Background = Background.empty(),
     val ratio: String = "1:1", // Consider an enum or a structured class for ratio
-    val metadata: Map<String, String>? = mapOf()
+    val metadata: Map<String, String> = mapOf()
 )
 
-// ref: https://kotlinlang.org/docs/extensions.html#extension-properties
 
-val TemplateDocument.category: String?
-    get() = this.metadata?.get(KnownMetadataKeys.CATEGORY.name)
-
-val TemplateDocument.description: String?
-    get() = this.metadata?.get(KnownMetadataKeys.DESCRIPTION.name)
-
-val TemplateDocument.author: String?
-    get() = this.metadata?.get(KnownMetadataKeys.AUTHOR.name)
-
-val TemplateDocument.hashtags: String?
-    get() = this.metadata?.get(KnownMetadataKeys.HASHTAGS.name)

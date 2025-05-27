@@ -1,4 +1,4 @@
-package com.ab.sclr.domain
+package com.ab.sclr.domain.layers
 
 enum class LayerType {
     IMAGE, // Stickers, Frames

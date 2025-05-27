@@ -1,13 +1,7 @@
-package com.ab.sclr.domain
+package com.ab.sclr.domain.background
 
 import android.graphics.Color
 import com.squareup.moshi.JsonClass
-
-enum class BackgroundType {
-    COLOR,
-    // GRADIENT,
-    // IMAGE
-}
 
 /**
  * Defines the background properties for a template or other elements.
@@ -20,8 +14,8 @@ enum class BackgroundType {
 @JsonClass(generateAdapter = true)
 data class Background(
     val type: BackgroundType,
-    val colorValue: Int? = null, // e.g., "#RRGGBBAA"
-    val imageRef: String? = null // Reference to SclrImageSource.id
+    val colorValue: Int = Color.argb(0, 0, 0, 0), // e.g., "#RRGGBBAA"
+    val imageRef: String? = null // Reference to ImageSource.id
 
     // val gradientValue: SclrGradient? = null, // Define this if needed
 
@@ -30,7 +24,7 @@ data class Background(
     companion object {
         fun empty(): Background = Background(
             type = BackgroundType.COLOR,
-            colorValue = Color.argb(0, 255, 255, 255),
+            colorValue = Color.argb(0, 0, 0, 0),
             imageRef = null,
         )
     }

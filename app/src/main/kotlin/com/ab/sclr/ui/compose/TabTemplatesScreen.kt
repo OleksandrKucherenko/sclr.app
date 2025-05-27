@@ -1,6 +1,7 @@
 package com.ab.sclr.ui.compose
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -19,20 +20,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.ab.sclr.R
+import com.ab.sclr.domain.primitives.Category
 import com.ab.sclr.ui.theme.SclrcloneTheme
-
-enum class Category(val title: String) {
-    Stories("Stories"),
-    Seamless("Seamless"),
-    Collage("Collage"),
-    Instant("Instant"),
-    Tape("Tape"),
-    Minimal("Minimal"),
-    Plastic("Plastic"),
-    Paper("Paper"),
-    Digital("Original"),
-    Film("Film")
-}
 
 @Composable
 fun TemplatesTabScreen(navController: NavController, onNewProjectClick: () -> Unit = {}) {
@@ -76,7 +65,11 @@ fun TemplatesTabScreen(navController: NavController, onNewProjectClick: () -> Un
                 stringResource(R.string.title_popular_shared_projects),
                 style = MaterialTheme.typography.titleMedium
             )
-            PopularProjects(navController = navController, modifier = Modifier.height(400.dp))
+            PopularProjects(
+                navController = navController,
+                modifier = Modifier.height(400.dp),
+                contentPadding = PaddingValues(0.dp)
+            )
         }
     }
 }

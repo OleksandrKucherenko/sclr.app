@@ -1,5 +1,7 @@
-package com.ab.sclr.domain
+package com.ab.sclr.domain.images
 
+import com.ab.sclr.domain.primitives.SclrPoint
+import com.ab.sclr.domain.primitives.SclrRect
 import com.squareup.moshi.JsonClass
 
 /**
