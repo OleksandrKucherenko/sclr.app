@@ -12,6 +12,10 @@ During Document editing user can select one of the predefined grids as a Layer.
 
 ## Decision
 
+| Original                    | Implementation                   |
+|-----------------------------|----------------------------------|
+| ![Image](../SCRL_grids.jpg) | ![Preview](../Preview_grids.png) |
+
 1. Compose 26 grids:
    1. 1 row, 2 columns 50/50
    2. 2 rows 50/50, 1 column
@@ -33,9 +37,9 @@ During Document editing user can select one of the predefined grids as a Layer.
    18. 5 cells, 2 rows, 3 columns. 2 cells in first row 50/50, 3 cells in second row 33/33/33
    19. 5 columns
    20. 5 rows
-   21. 3x3 Rows x Columns
+   21. 2x3 Rows x Columns
    22. 2x4 Rows x Columns
-   23. 2x3 Rows x Columns
+   23. 3x2 Rows x Columns
    24. 2x4 Rows x Columns
    25. 3x3 rows x Columns
    26. 4x4 rows x Columns

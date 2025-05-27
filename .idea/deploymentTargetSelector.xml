@@ -13,16 +13,19 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="UiMainScreenPreview">
+      <SelectionState runConfigName="Preview_TwoRows_70_30_TwoColumns_30_70">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="UiTemplatesTabScreenPreview">
+      <SelectionState runConfigName="Preview_FourRows_25_25_25_25_FourColumns_25_25_25_25">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="UiExplorerScreenPreview">
+      <SelectionState runConfigName="Preview_TwoRows_50_50_ThreeColumns_33_33_34_CustomLayout18">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="UiPreviewScreenPreview">
+      <SelectionState runConfigName="Preview_ThreeRows_33_33_34_TwoColumns_50_50_LeftMerged">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="PreviewAllGrids">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

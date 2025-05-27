@@ -86,6 +86,7 @@ dependencies {
 
     // UI components
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.constraintlayout.compose)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
 
