@@ -17,14 +17,4 @@ class MainActivityViewModel @Inject constructor(): ViewModel() {
     @Inject lateinit var api: OverlaysEndpoint
 
     val selectedTab: MutableLiveData<Tab> = MutableLiveData(Tab.HOME)
-    val overlays = MutableLiveData<List<OverlayCategory>>()
-
-    fun loadOverlays() {
-       viewModelScope.launch {
-           val downloaded = api.listOverlays()
-           overlays.postValue(downloaded);
-
-           Timber.i("Found ${downloaded.size} overlays")
-       }
-    }
 }

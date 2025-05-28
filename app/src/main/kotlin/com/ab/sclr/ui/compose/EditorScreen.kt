@@ -1,7 +1,6 @@
 package com.ab.sclr.ui.compose
 
 import android.widget.Toast
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,7 +29,6 @@ import androidx.compose.material.icons.filled.Splitscreen
 import androidx.compose.material.icons.filled.Stars
 import androidx.compose.material.icons.filled.TextFields
 import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -42,33 +40,45 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.ab.sclr.R
+import com.ab.sclr.ui.canvas.CanvasScreen
+import com.ab.sclr.ui.canvas.CanvasViewModel
 import com.ab.sclr.ui.theme.SclrcloneTheme
 import timber.log.Timber
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EditorScreen(navController: NavController, templateId: String? = null) {
-    var showBottomSheet by remember { mutableStateOf(false) }
+fun EditorScreen(
+    navController: NavController,
+    templateId: String? = null,
+    viewModel: CanvasViewModel = hiltViewModel()
+) {
+    var showBottomSheetGrids by remember { mutableStateOf(false) }
+    var showBottomSheetOverlay by remember { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState(true)
+//    val state by viewModel.state.collectAsState()
 
     val todo = {
         Toast.makeText(navController.context, "Not Implemented Yet!", Toast.LENGTH_SHORT).show()
     }
 
-    val showGrid = { showBottomSheet = true }
+    val showGrid = { showBottomSheetGrids = true }
+    val showOverlay = { showBottomSheetOverlay = true }
+    val addSlide = { viewModel.addSlide() }
+    val removeSlide = { viewModel.removeLastSlide() }
 
     Scaffold(
         topBar = {
@@ -95,10 +105,10 @@ fun EditorScreen(navController: NavController, templateId: String? = null) {
         },
         bottomBar = {
             EditorControls(handlers = object : ControlsHandler {
-                override fun onSlideAddClick() = todo()
-                override fun onSlideRemoveClick() = todo()
-                override fun onSelectGridClick()  = showGrid()
-                override fun onSelectOverlayClick() = todo()
+                override fun onSlideAddClick() = addSlide()
+                override fun onSlideRemoveClick() = removeSlide()
+                override fun onSelectGridClick() = showGrid()
+                override fun onSelectOverlayClick() = showOverlay()
                 override fun onPictureSelectClick() = todo()
                 override fun onNoOp() = todo()
             })
@@ -109,33 +119,14 @@ fun EditorScreen(navController: NavController, templateId: String? = null) {
             modifier = Modifier
                 .padding(paddingValues)
                 .fillMaxSize()
-                .background(Color.LightGray), // Placeholder
-            contentAlignment = Alignment.Center
         ) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Text(
-                    "Editor Screen",
-                    style = MaterialTheme.typography.headlineMedium
-                )
-                if (templateId != null) {
-                    Text("Editing template: $templateId")
-                } else {
-                    Text("Editing a blank project")
-                }
-                Spacer(modifier = Modifier.height(16.dp))
-                Button(onClick = { /* TODO: Implement Image Selector Logic */ }) {
-                    Text("Select Image (Camera/Photos/Remote)")
-                }
-                Button(onClick = { showBottomSheet = true }) {
-                    Text("Select Grids")
-                }
-            }
+            CanvasScreen()
         }
     }
 
-    if (showBottomSheet) {
+    if (showBottomSheetGrids) {
         ModalBottomSheet(
-            onDismissRequest = { showBottomSheet = false },
+            onDismissRequest = { showBottomSheetGrids = false },
             sheetState = sheetState
         ) {
             GridSelector(
@@ -144,7 +135,7 @@ fun EditorScreen(navController: NavController, templateId: String? = null) {
                     // TODO (olku): add Layer with Selected grid
                     Timber.i("Selected grid: %s", it.grid)
 
-                    showBottomSheet = false
+                    showBottomSheetGrids = false
                 })
         }
     }
@@ -152,7 +143,12 @@ fun EditorScreen(navController: NavController, templateId: String? = null) {
 
 
 @Composable
-fun EditorControls(handlers: ControlsHandler) {
+fun EditorControls(
+    handlers: ControlsHandler,
+    viewModel: CanvasViewModel = hiltViewModel()
+) {
+    val state by viewModel.state.collectAsState()
+
     // can be displayed only one set of controls at a time
     var isBackground by remember { mutableStateOf(false) }
     var isLayers by remember { mutableStateOf(false) }
@@ -206,10 +202,10 @@ fun EditorControls(handlers: ControlsHandler) {
                     Icon(Icons.AutoMirrored.Filled.ArrowBack, "Back")
                 }
             } else if (isSlides) {
-                IconButton(onClick = { handlers.onSlideAddClick() }) {
+                IconButton(onClick = { handlers.onSlideRemoveClick() }, enabled = state.document.slides.isNotEmpty()) {
                     Icon(Icons.Filled.Remove, "Remove")
                 }
-                IconButton(onClick = { handlers.onSlideRemoveClick() }) {
+                IconButton(onClick = { handlers.onSlideAddClick() }) {
                     Icon(Icons.Filled.Add, "Add")
                 }
                 Spacer(modifier = Modifier.weight(1f))

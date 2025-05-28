@@ -26,7 +26,7 @@ retrofit = "3.0.0"
 splashscreen = "1.2.0-beta02"
 navigation = "2.9.0"
 robolectric = "4.14.1"
-
+hilt = "1.2.0"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "plugin-agp" }
@@ -99,6 +99,12 @@ timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "dagger" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "dagger" }
 hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "dagger" }
+
+androidx-hilt-common = { group = "androidx.hilt", name = "hilt-common", version.ref = "hilt" }
+androidx-hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hilt" }
+androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt" }
+#androidx-hilt-lifecycle-viewmodel = { group = "androidx.hilt", name = "hilt-lifecycle-viewmodel", version.ref = "hilt" }
+
 dagger-apt-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
 dagger-runtime = { module = "com.google.dagger:dagger", version.ref = "dagger" }
 dagger-spi = { module = "com.google.dagger:dagger-spi", version.ref = "dagger" }

@@ -16,8 +16,6 @@ import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private val model: MainActivityViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         Timber.i("onCreate()")
 
@@ -29,8 +27,6 @@ class MainActivity : AppCompatActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         supportActionBar?.hide()
-
-        model.loadOverlays()
 
         setContent {
             SclrcloneTheme {

@@ -4,6 +4,7 @@ import com.ab.sclr.domain.background.Background
 import com.ab.sclr.domain.images.ImageSource
 import com.ab.sclr.domain.metadata.KnownMetadataKeys
 import com.squareup.moshi.JsonClass
+import java.util.UUID
 
 /**
  * Represents the overall template or canvas for a project.
@@ -24,7 +25,7 @@ import com.squareup.moshi.JsonClass
 data class TemplateDocument(
     val id: String, // Or UUID
     val version: Int = Versions.v1.value,
-    val name: String?,
+    val name: String = "",
     val slides: List<Slide> = listOf(),
     val images: List<ImageSource> = listOf(), // Centralized image definitions
     val background: Background = Background.empty(),
@@ -86,6 +87,10 @@ data class TemplateDocument(
         return this.copy(metadata = metadata.mapValues { (k, v) ->
             if (k == key) apply() else v
         })
+    }
+
+    companion object {
+        fun newId(): String = UUID.randomUUID().toString()
     }
 }
 
