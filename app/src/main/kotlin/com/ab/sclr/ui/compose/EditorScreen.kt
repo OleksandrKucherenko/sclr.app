@@ -69,7 +69,9 @@ fun EditorScreen(
     var showBottomSheetGrids by remember { mutableStateOf(false) }
     var showBottomSheetOverlay by remember { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState(true)
+
 //    val state by viewModel.state.collectAsState()
+    viewModel.loadOverlays()
 
     val todo = {
         Toast.makeText(navController.context, "Not Implemented Yet!", Toast.LENGTH_SHORT).show()
@@ -145,7 +147,13 @@ fun EditorScreen(
             onDismissRequest = { showBottomSheetOverlay = false },
             sheetState = sheetState
         ) {
-
+            OverlaySelector(
+                modifier = Modifier.height(350.dp).padding(8.dp),
+                onItemClick = {
+                    Timber.i("Selected overlay: %s", it)
+                    showBottomSheetOverlay = false
+                }
+            )
         }
     }
 }

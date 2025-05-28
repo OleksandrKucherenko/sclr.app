@@ -19,9 +19,11 @@ object CoilModule {
         @ApplicationContext context: Context,
         @DefaultClient okHttpClient: OkHttpClient
     ) =
-        ImageLoader.Builder(context).components {
-            add(
-                OkHttpNetworkFetcherFactory(callFactory = okHttpClient)
-            )
-        }.build()
+        ImageLoader.Builder(context)
+            .components {
+                add(
+                    OkHttpNetworkFetcherFactory(callFactory = okHttpClient)
+                )
+            }
+            .build()
 }

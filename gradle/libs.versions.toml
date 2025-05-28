@@ -87,6 +87,7 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 # https://coil-kt.github.io/coil/getting_started/
 coilCompose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coilOkHttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
+coilGif = { module = "io.coil-kt.coil3:coil-gif", version.ref = "coil" }
 
 # https://saket.github.io/telephoto/zoomableimage/
 telephoto-zoomableimage = { module = "me.saket.telephoto:zoomable-image-coil3", version.ref = "telephoto" }
@@ -135,7 +136,7 @@ robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "
 
 
 [bundles]
-coil = ["coilCompose", "coilOkHttp"]
+coil = ["coilCompose", "coilOkHttp", "coilGif"]
 telephoto = ["telephoto-zoomableimage", "telephoto-zoomable"]
 square-okhttp = ["square-okhttp", "square-okhttpLoggingInterceptor", "square-okhttpBrotli"]
 retrofit = ["retrofit-core", "retrofit-moshi"]
