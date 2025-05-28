@@ -46,4 +46,6 @@ Accepted
 ## Consequences
 
 1. make editor navigation/edit controls first
-2. implement simplified canvas drawing on screen (from TemplateDocument instance) 
+2. implement simplified canvas drawing on screen (from TemplateDocument instance)
+3. use UI elements for composing the canvas layout, it will be easier for hit-test and selection
+4. guide lines should be implemented as a UI compose element

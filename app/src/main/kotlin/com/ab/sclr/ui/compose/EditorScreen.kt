@@ -139,6 +139,15 @@ fun EditorScreen(
                 })
         }
     }
+
+    if(showBottomSheetOverlay) {
+        ModalBottomSheet(
+            onDismissRequest = { showBottomSheetOverlay = false },
+            sheetState = sheetState
+        ) {
+
+        }
+    }
 }
 
 
@@ -240,7 +249,7 @@ fun EditorControls(
                         Text("Colors", style = MaterialTheme.typography.labelSmall)
                     }
                 }
-                TextButton(onClick = { layers() }) {
+                TextButton(onClick = { layers() }, enabled = state.selectedSlideId != null) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Icon(Icons.Filled.Add, "Layers")
                         Text("Layers", style = MaterialTheme.typography.labelSmall)

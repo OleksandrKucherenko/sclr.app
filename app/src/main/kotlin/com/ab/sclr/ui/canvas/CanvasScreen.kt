@@ -2,6 +2,8 @@ package com.ab.sclr.ui.canvas
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
@@ -23,7 +25,12 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.LayoutCoordinates
+import androidx.compose.ui.layout.boundsInParent
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.layout.onPlaced
 import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.layout.positionInWindow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
@@ -62,7 +69,8 @@ fun CanvasScreen(
                     Timber.i("Centroid: $centroid, Pan: $pan, Scale: $scale, Rotate: $rotate")
 
                     // reserve space at list for one "empty slide" or display normal slides
-                    val minSpace = if (state.document.slides.isEmpty()) 1 else state.document.slides.size
+                    val minSpace =
+                        if (state.document.slides.isEmpty()) 1 else state.document.slides.size
 
                     val oldScale = zoom.value
                     val newScale =
@@ -86,6 +94,17 @@ fun CanvasScreen(
                     Timber.i("axis-Y min: $minY, max: $maxY - $offset");
                 }
             }
+            .pointerInput(Unit) {
+                detectTapGestures(
+                    onTap = { tapOffsetInViewport ->
+                        // TODO: check the boundaries of each document element and find a correct one
+                        val absoluteOffset = offset + tapOffsetInViewport
+
+                        // FIXME (olku): do we really need this? Looks like all elements on canvas
+                        //    can detect click on themself
+                    },
+                )
+            }
     ) {
         // reserve space at list for one "empty slide" or display normal slides
         val minSpace = if (state.document.slides.isEmpty()) 1 else state.document.slides.size
@@ -108,7 +127,9 @@ fun CanvasScreen(
                 // all elements should use absolute position inside this box
                 // size and position are absolute!
                 state.document.slides.forEachIndexed { index, slide ->
-                    SlideItem(document = state.document, slide = slide, offsetIndex = index)
+                    SlideItem(
+                        slide = slide, offsetIndex = index
+                    )
                 }
             }
         }
@@ -117,13 +138,16 @@ fun CanvasScreen(
 
 @Composable
 fun SlideItem(
-    document: TemplateDocument,
     slide: Slide,
     modifier: Modifier = Modifier,
-    offsetIndex: Int
+    offsetIndex: Int,
+    viewModel: CanvasViewModel = hiltViewModel()
 ) {
+    val state by viewModel.state.collectAsState()
+    val selected = remember(state.selectedSlideId) { state.selectedSlideId == slide.id }
+
     // TODO: Determine aspect ratio from slide.ratio or template.ratio
-    val aspectRatio = when (document.ratio) {
+    val aspectRatio = when (state.document.ratio) {
 
         // Assuming TemplateDocument.Ratio will have defined values
         // For now, using a placeholder or a default
@@ -139,9 +163,19 @@ fun SlideItem(
             .offset((offsetIndex * D.SLIDE_WIDTH).dp, D.TOP.dp)
             .aspectRatio(aspectRatio)
             .background(Color.White)
-            .border(1.dp, Color.Gray.copy(alpha = 0.5f)),
-        contentAlignment = Alignment.Center
-    ) {
+            .border(1.dp, (if (selected) Color.Blue else Color.Gray).copy(alpha = 0.25f))
+            .clickable(onClick = { viewModel.selectSlide(slide) })
+            .onGloballyPositioned { coordinates: LayoutCoordinates ->
+                val size = coordinates.size
+                val positionInWindow = coordinates.positionInWindow()
+                val boundsInParent = coordinates.boundsInParent()
+                viewModel.bounds[slide.id] = boundsInParent
+
+                Timber.i("Bounds of Slide: ${slide.id} - $boundsInParent, $size, win: $positionInWindow")
+            },
+        contentAlignment = Alignment.Center,
+
+        ) {
         Text(
             text = "Slide ID: ${slide.id.substring(0, 4)}\nLayers: ${slide.layers.size}",
             fontSize = 12.sp
